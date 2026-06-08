@@ -34,15 +34,13 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// ✅ CORRECTED BULLETPROOF CODE
+
 userSchema.pre('save', async function () {
-  // If the password hasn't changed, simply exit the function early
+  
   if (!this.isModified('password')) return;
 
-  // Hash the password safely using bcrypt
   this.password = await bcrypt.hash(this.password, 12);
 
-  // No next() callback needed! Mongoose automatically knows when this async function finishes.
 })
 
 userSchema.methods.comparePassword = function (enteredPassword) {
