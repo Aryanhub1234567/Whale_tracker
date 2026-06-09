@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const cors = require('cors');
 
@@ -7,6 +8,8 @@ const adminRoutes = require('./routes/admin.Routes');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
+
+dotenv.config();
 
 app.use(cors({
   origin: process.env.FRONTEND_URL
